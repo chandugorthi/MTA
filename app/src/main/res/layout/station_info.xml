@@ -7,14 +7,5 @@
     android:visibility="gone">
 
 
-    <Button
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:text="New Button"
-        android:id="@+id/button10"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentLeft="false"
-        android:background="#000000" />
+
 </RelativeLayout>
