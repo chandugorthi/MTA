@@ -1,0 +1,488 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.csg.mta.SelectStationSIR"
+    android:background="#000000">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Station"
+        android:id="@+id/textView20"
+        android:layout_below="@+id/tableRow0"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textStyle="italic" />
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/textView20"
+        android:id="@+id/tableScroller">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/stationList">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow2">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Tottenville"
+                    android:id="@+id/button19"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow3">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Atlantic"
+                    android:id="@+id/button21"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow4">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Nassau"
+                    android:id="@+id/button24"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow7">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Richmond Valley"
+                    android:id="@+id/button25"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow8">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Pleasant Plains"
+                    android:id="@+id/button26"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow9">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Prince&apos;s Bay"
+                    android:id="@+id/button27"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow10">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Huguenot"
+                    android:id="@+id/button28"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow11">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Annadale"
+                    android:id="@+id/button29"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow12">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Eltingville"
+                    android:id="@+id/button30"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow13">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Great Kills"
+                    android:id="@+id/button31"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow6">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Bay Terrace"
+                    android:id="@+id/button20"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow14">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Oakwood Heights"
+                    android:id="@+id/button32"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow15">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="New Dorp"
+                    android:id="@+id/button33"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow16">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Grant City"
+                    android:id="@+id/button34"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow17">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Jefferson Av"
+                    android:id="@+id/button35"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow18">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Dongan Hills"
+                    android:id="@+id/button36"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow19">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Old Town"
+                    android:id="@+id/button37"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow20">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Grasmere"
+                    android:id="@+id/button38"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow21">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Clifton"
+                    android:id="@+id/button39"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow22">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Stapleton"
+                    android:id="@+id/button40"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow23">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Tompkinsville"
+                    android:id="@+id/button41"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow24">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="St George"
+                    android:id="@+id/button42"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableRow0">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:id="@+id/button22"
+            android:background="@drawable/black_scroll_top"
+            android:layout_gravity="right"
+            android:onClick="scrollStations" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:id="@+id/button23"
+            android:layout_gravity="left"
+            android:background="@drawable/black_scroll_bottom"
+            android:onClick="scrollStations" />
+    </TableRow>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:id="@+id/button107"
+        android:background="@drawable/black_scroll_home"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="directiveButton" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:id="@+id/button108"
+        android:background="@drawable/black_scroll_legend"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="directiveButton" />
+
+</RelativeLayout>

@@ -1,0 +1,155 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.csg.mta.SelectStationS"
+    android:background="#000000">
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:id="@+id/button96"
+        android:background="@drawable/black_scroll_legend"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="directiveButton" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:id="@+id/button97"
+        android:background="@drawable/black_scroll_home"
+        android:layout_alignTop="@+id/button96"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="directiveButton" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/tableRow65"
+        android:layout_below="@+id/button97"
+        >
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/textView23"
+            android:layout_weight="1"
+            android:text="       " />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Station                      "
+            android:id="@+id/textView26"
+            android:layout_weight="5"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Transfer available to"
+            android:id="@+id/textView29"
+            android:layout_weight="4"
+            android:textColor="#ffffff" />
+    </TableRow>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/tableRow65"
+        >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayout" >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow67" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView41"
+                    android:layout_weight="0.5"
+                    android:text="      "
+                    android:background="@drawable/pt" />
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Grand Central - 42 St"
+                    android:id="@+id/button98"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/textView77"
+                    android:layout_weight="4"
+                    android:textColor="#ffffff"
+                    android:text="A, C, E, N, Q, R, 1, 2, 3, 7, Bus or AIRTRAIN to airport" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                
+                android:id="@+id/tableRow68" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView79"
+                    android:layout_weight="0.5"
+                    android:text="      "
+                    android:background="@drawable/pt" />
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    android:text="Times Sq - 42 St"
+                    android:id="@+id/button99"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:onClick="getTrainTime" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/textView147"
+                    android:layout_weight="4"
+                    android:textColor="#ffffff"
+                    android:text="Bus or AIRTRAIN to airport" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+</RelativeLayout>

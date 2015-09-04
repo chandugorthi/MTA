@@ -1,0 +1,41 @@
+::Transfer available to:Station Service
+BRONX:::
+Van Cortlandt Park - 242 St:101::Full Time
+238 St:103::Full Time
+231 St:104::Full Time
+MANHATTAN:::
+Marble Hill - 225 St:106::Full Time
+215 St:107::Full Time
+207 St:108::Full Time
+Dyckman St:109::Full Time
+191 St:110::Full Time
+181 St:111::Full Time
+168 St - Washington Hts:112:A,C:Full Time
+157 St:113::Full Time
+145 St:114::Full Time
+137 St - City College:115::Full Time
+125 St:116::Full Time
+116 St - Columbia University:117:Bus or AIRTRAIN to airport:Full Time
+Cathedral Pkwy:118:Bus or AIRTRAIN to airport:Full Time
+103 St:119::Full Time
+96 St:120:2,3:Full Time
+86 St:121::Full Time
+79 St:122::Full Time
+72 St:123:2 3:Full Time
+66 St - Lincoln Center:1,2,4::Full Time
+59 St - Columbus Circle:125:A,B,C,D,2:Full Time
+50 St:126::Full Time
+Times Sq - 42 St:127:"A,C,E,N,Q,R,S,2,3,7,Bus or AIRTRAIN to airport":Full Time
+34 St - Penn Station:128:"2,3,Bus or AIRTRAIN to airport":Full Time
+28 St:129::Full Time
+23 St:130::Full Time
+18 St:131::Full Time
+14 St:132:F,L,M,2,3:Full Time
+Christopher St - Sheridan Sq:133::Full Time
+Houston St:134::Full Time
+Canal St:135::Full Time
+Franklin St:136::Full Time
+Chambers St:137:2,3:Full Time
+Cortlandt St:138::Full Time
+Rector St:139::Full Time
+South Ferry Loop:140:N,R:Full Time
