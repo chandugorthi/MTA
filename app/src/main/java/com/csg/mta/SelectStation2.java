@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,33 +11,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
-import android.widget.TextView;
-
-import com.google.transit.realtime.GtfsRealtime.FeedEntity;
-import com.google.transit.realtime.GtfsRealtime.FeedMessage;
-import com.google.transit.realtime.GtfsRealtime.TripUpdate;
-import com.google.transit.realtime.GtfsRealtime.TripUpdate.StopTimeUpdate;
-
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 public class SelectStation2 extends AppCompatActivity{
+
+    private Animation btnAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_station2);
+
+        btnAnim = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
     }
 
     public void scrollStations(View view){
         ScrollView scroller = (ScrollView) findViewById(R.id.tableScroller);
-        int location;
+        view.startAnimation(btnAnim);
         switch(view.getId()){
             case (R.id.button22):
                 scroller.scrollTo(0,0);
@@ -52,6 +42,7 @@ public class SelectStation2 extends AppCompatActivity{
 
     public void directiveButton(View view){
         Intent i;
+        view.startAnimation(btnAnim);
         switch ((view.getId())){
             case (R.id.button66):
                 i = new Intent(this, WelcomeScreen.class);
@@ -66,6 +57,7 @@ public class SelectStation2 extends AppCompatActivity{
 
     public void getTrainTime(View view) {
         Intent i;
+        view.startAnimation(btnAnim);
         Bundle data = new Bundle();
         data.putString("train", "2");
         switch (view.getId()) {
@@ -387,9 +379,7 @@ public class SelectStation2 extends AppCompatActivity{
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
             startActivity(i);
         } else {
-            AlertDialog exitMsg = new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Info")
-                    .setMessage("Network not available. Check your Internet connection and try again")
-                    .setPositiveButton("Ok", null).show();
+            Toast.makeText(this, "Network Unavailable", Toast.LENGTH_SHORT).show();
         }
     }
 

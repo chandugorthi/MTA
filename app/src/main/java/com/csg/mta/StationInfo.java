@@ -1,16 +1,14 @@
 package com.csg.mta;
 
 import android.app.ActionBar;
-import android.app.FragmentManager;
-import android.content.Context;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Marker;
 
 /**
  * Created by Chandu on 8/23/2015.
@@ -32,9 +33,11 @@ public class StationInfo extends Fragment{
         return view;
     }
 
-    public void setInfo(final String[] details){
-        RelativeLayout layout = (RelativeLayout) getView().findViewById(R.id.infoFragment);
-        layout.removeAllViews();
+    public void setInfo(final String[] details, final Marker mark){
+        final RelativeLayout layout = (RelativeLayout) getView().findViewById(R.id.infoFragment);
+        if (layout != null) {
+            layout.removeAllViews();
+        }
         int txtId = 1;
         TextView stopName = new TextView(getActivity());
         int textHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
@@ -50,17 +53,6 @@ public class StationInfo extends Fragment{
         stopName.setTextSize(24);
         stopName.setId(txtId);
         layout.addView(stopName);
-        Button close = new Button(getActivity());
-        int cButtonHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics());
-        int cButtonWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics());
-        RelativeLayout.LayoutParams cButtonParams = new RelativeLayout.LayoutParams(new ActionBar.LayoutParams(cButtonWidth,cButtonHeight));
-        cButtonParams.setMargins(0,15,15,0);
-        cButtonParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-        cButtonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        cButtonParams.addRule(RelativeLayout.ALIGN_PARENT_END);
-        close.setLayoutParams(cButtonParams);
-        close.setBackgroundResource(R.drawable.close_button);
-        layout.addView(close);
         String[] trains = details[8].split(" ");
         int id = 2,iter = 1;
         for(final String train:trains) {
@@ -108,6 +100,23 @@ public class StationInfo extends Fragment{
             iter++;
             id++;
         }
+        int bHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+        int bWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+        RelativeLayout.LayoutParams closeParams = new RelativeLayout.LayoutParams(new ActionBar.LayoutParams(bWidth, bHeight));
+        closeParams.setMargins(0, 20, 25, 0);
+        closeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        closeParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        Button close = new Button(getActivity());
+        close.setLayoutParams(closeParams);
+        close.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.close_button,null));
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mark.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                layout.setVisibility(View.GONE);
+            }
+        });
+        layout.addView(close);
     }
 
 

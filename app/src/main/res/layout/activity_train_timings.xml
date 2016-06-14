@@ -234,6 +234,16 @@
                 android:textColor="#ffffff"
                 android:layout_marginTop="5dp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textView157"
+                android:layout_below="@+id/south"
+                android:layout_alignParentEnd="true"
+                android:textColor="#ffffff"
+                android:textStyle="italic" />
+
         </RelativeLayout>
     </ScrollView>
 

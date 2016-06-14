@@ -4,25 +4,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ScrollView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 public class SelectStationS extends AppCompatActivity {
+
+    private Animation btnAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_station_s);
+
+        btnAnim = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
     }
 
     public void directiveButton(View view){
         Intent i;
+        view.startAnimation(btnAnim);
         switch ((view.getId())){
             case (R.id.button97):
                 i = new Intent(this, WelcomeScreen.class);
@@ -37,6 +43,7 @@ public class SelectStationS extends AppCompatActivity {
 
     public void getTrainTime(View view) {
         Intent i;
+        view.startAnimation(btnAnim);
         Bundle data = new Bundle();
         data.putString("train", "GS");
         switch (view.getId()) {
@@ -55,7 +62,6 @@ public class SelectStationS extends AppCompatActivity {
         }
         Button b = (Button) findViewById(view.getId());
         String text = b.getText().toString();
-        System.out.println("Psyther: " + text);
         data.putString("stationName", text);
         i.putExtras(data);
         ConnectivityManager connectivityManager
@@ -64,9 +70,7 @@ public class SelectStationS extends AppCompatActivity {
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
             startActivity(i);
         } else {
-            AlertDialog exitMsg = new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Info")
-                    .setMessage("Network not available. Check your Internet connection and try again")
-                    .setPositiveButton("Ok", null).show();
+            Toast.makeText(this, "Network Unavailable", Toast.LENGTH_SHORT).show();
         }
     }
 

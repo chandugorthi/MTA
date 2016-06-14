@@ -1,20 +1,37 @@
 package com.csg.mta;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class WelcomeScreen extends AppCompatActivity {
+
+    private Animation btnAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+        btnAnim = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
     }
 
     @Override
@@ -40,11 +57,25 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
     public void goToMap(View view){
-        Intent i = new Intent(this,RouteMap.class);
-        startActivity(i);
+        view.startAnimation(btnAnim);
+        if (isNetworkAvailable(this)){
+            Intent i = new Intent(this,RouteMap.class);
+            startActivity(i);
+        } else {
+            Toast.makeText(this, "Network Unavailable", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public boolean isNetworkAvailable(Context con){
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public void selectLine(View view){
+        view.startAnimation(btnAnim);
         Intent i = new Intent(this,SelectLine.class);
         startActivity(i);
     }

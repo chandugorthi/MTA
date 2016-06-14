@@ -6,17 +6,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 public class ShowLegend extends AppCompatActivity {
+
+    private Animation btnAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_legend);
+
+        btnAnim = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
     }
 
     public void directiveButton(View view){
         Intent i;
+        view.startAnimation(btnAnim);
         switch ((view.getId())){
             case (R.id.button12):
                 i = new Intent(this, WelcomeScreen.class);

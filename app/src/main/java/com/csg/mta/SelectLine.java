@@ -8,17 +8,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 public class SelectLine extends AppCompatActivity {
+
+    private Animation btnAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_line);
+
+        btnAnim = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
     }
 
     public void trainStation(View view){
         Intent i;
+        view.startAnimation(btnAnim);
         switch(view.getId()){
             case (R.id.button2):
                 i = new Intent(this,SelectStation1.class);

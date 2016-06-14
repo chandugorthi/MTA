@@ -1,11 +1,23 @@
 package com.csg.mta;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,13 +32,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.Inet4Address;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class RouteMap extends FragmentActivity implements GoogleMap.OnMarkerClickListener{
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private Map<String,String[]> stations = new HashMap<String, String[]>();
+    private Marker prevMarker = null;
+    private Location ny;
+    private List<String> codes = new ArrayList<String>(Arrays.asList("10001", "10002", "10003", "10004", "10005", "10006", "10007", "10009", "10010", "10011", "10012", "10013", "10014", "10016", "10017", "10018", "10019", "10020", "10021", "10022", "10023", "10024", "10025", "10026", "10027", "10028", "10029", "10030", "10031", "10032", "10033", "10034", "10035", "10036", "10037", "10038", "10039", "10040", "10044", "10065", "10069", "10075", "10103", "10110", "10111", "10112", "10115", "10119", "10128", "10152", "10153", "10154", "10162", "10165", "10167", "10168", "10169", "10170", "10171", "10172", "10173", "10174", "10177", "10199", "10271", "10278", "10279", "10280", "10282", "10301", "10302", "10303", "10304", "10305", "10306", "10307", "10308", "10309", "10310", "10311", "10312", "10314", "10451", "10452", "10453", "10454", "10455", "10456", "10457", "10458", "10459", "10460", "10461", "10462", "10463", "10464", "10465", "10466", "10467", "10468", "10469", "10470", "10471", "10472", "10473", "10474", "10475", "11004", "11005", "11101", "11102", "11103", "11104", "11105", "11106", "11109", "11201", "11203", "11204", "11205", "11206", "11207", "11208", "11209", "11210", "11211", "11212", "11213", "11214", "11215", "11216", "11217", "11218", "11219", "11220", "11221", "11222", "11223", "11224", "11225", "11226", "11228", "11229", "11230", "11231", "11232", "11233", "11234", "11235", "11236", "11237", "11238", "11239", "11351", "11354", "11355", "11356", "11357", "11358", "11359", "11360", "11361", "11362", "11363", "11364", "11365", "11366", "11367", "11368", "11369", "11370", "11371", "11372", "11373", "11374", "11375", "11377", "11378", "11379", "11385", "11411", "11412", "11413", "11414", "11415", "11416", "11417", "11418", "11419", "11420", "11421", "11422", "11423", "11424", "11425", "11426", "11427", "11428", "11429", "11430", "11432", "11433", "11434", "11435", "11436", "11451", "11691", "11692", "11693", "11694", "11697"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +57,11 @@ public class RouteMap extends FragmentActivity implements GoogleMap.OnMarkerClic
     }
 
     public void onMapReady(GoogleMap map) {
-        LatLng ny = new LatLng(40.7314339,-74.0287157);
+        if (!inCity()) {
+            ny = new Location("");
+            ny.setLatitude(40.754244);
+            ny.setLongitude(-73.982678);
+        }
         InputStream inputStream = getResources().openRawResource(R.raw.stops);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         map.setOnMarkerClickListener(this);
@@ -69,20 +93,26 @@ public class RouteMap extends FragmentActivity implements GoogleMap.OnMarkerClic
             }
         }
         map.setMyLocationEnabled(true);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, 10));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(ny.getLatitude(),ny.getLongitude()),14));
 
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out);
-        StationInfo info = (StationInfo) getSupportFragmentManager().findFragmentById(R.id.infoFragment);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        //ft.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out);
+        StationInfo info = (StationInfo) getFragmentManager().findFragmentById(R.id.infoFragment);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.infoFragment);
         layout.setVisibility(View.VISIBLE);
+        if (prevMarker != null){
+            prevMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        }
+        prevMarker = marker;
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         String id = marker.getId();
-        info.setInfo(stations.get(id));
+        info.setInfo(stations.get(id),marker);
+        ft.commit();
 
         /*FragmentManager fm = getFragmentManager();
         fm.beginTransaction().setCustomAnimations(R.anim.abc_fade_in,R.anim.abc_fade_out).show(getFragmentManager().
@@ -134,6 +164,62 @@ public class RouteMap extends FragmentActivity implements GoogleMap.OnMarkerClic
         mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
     }
 
+    private boolean inCity(){
+        final LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+// Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
+                ny = location;
+
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {
+                ny = locationManager.getLastKnownLocation(provider);
+            }
+
+            public void onProviderDisabled(String provider) {}
+        };
+
+// Register the listener with the Location Manager to receive location updates
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 2, locationListener);
+            ny = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        } else {
+            Toast.makeText(this,"GPS is not enabled", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        locationManager.removeUpdates(locationListener);
+        Geocoder gcd = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = gcd.getFromLocation(ny.getLatitude(),ny.getLongitude(),1);
+            String code = addresses.get(0).getPostalCode();
+            if (codes.contains(code)){
+                return true;
+            } else {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setMessage("You are out of New York City. Taking you back to the city.").setTitle("Out of city");
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(ny.getLatitude(),ny.getLongitude()),14));
+                alert.setPositiveButton("Ok",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+
+                    }
+                });
+                AlertDialog dialog = alert.create();
+                dialog.show();
+                return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+    }
 
 
 }

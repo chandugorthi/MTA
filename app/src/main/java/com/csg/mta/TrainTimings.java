@@ -21,8 +21,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 public class TrainTimings extends AppCompatActivity {
+
+    private Animation btnAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class TrainTimings extends AppCompatActivity {
         String station = getData.getString("station");
         String stationName = getData.getString("stationName");
         setContentView(R.layout.activity_train_timings);
+        btnAnim = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
         TextView name = (TextView) findViewById(R.id.textView154);
         name.setText(stationName);
         TextView number = (TextView) findViewById(R.id.textView4);
@@ -266,6 +271,11 @@ public class TrainTimings extends AppCompatActivity {
                 trainIndex++;
                 iter++;
             }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a", Locale.US);
+            dateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+            TextView currTime = (TextView) findViewById(R.id.textView157);
+            String currDate = dateFormat.format(new Date());
+            currTime.setText("Now: " + currDate + " EDT");
             super.onPostExecute(trains);
         }
     }
@@ -285,6 +295,7 @@ public class TrainTimings extends AppCompatActivity {
 
     public void directiveButton(View view){
         Intent i;
+        view.startAnimation(btnAnim);
         switch ((view.getId())){
             case (R.id.button10):
                 i = new Intent(this, WelcomeScreen.class);
