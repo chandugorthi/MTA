@@ -1,9 +1,7 @@
 package com.csg.mta;
 
 import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -43,29 +41,41 @@ public class StationInfo extends Fragment{
         int textHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
         int textWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
         RelativeLayout.LayoutParams textParams = new RelativeLayout.LayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        textParams.setMargins(20, 10, 0, 0);
+        textParams.setMargins(20, 30, 0, 0);
         textParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
         textParams.addRule(RelativeLayout.ALIGN_PARENT_START);
         textParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         stopName.setLayoutParams(textParams);
         stopName.setText(details[2]);
         stopName.setTextColor(Color.WHITE);
-        stopName.setTextSize(24);
+        stopName.setTextSize(26);
         stopName.setId(txtId);
         layout.addView(stopName);
         String[] trains = details[8].split(" ");
         int id = 2,iter = 1;
         for(final String train:trains) {
             Button b = new Button(getActivity());
-            int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
-            int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
+            int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, getResources().getDisplayMetrics());
+            int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, getResources().getDisplayMetrics());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(new ActionBar.LayoutParams(width,height));
             if (train.equals("GS")) {
-                b.setText("S");
+                b.setBackgroundResource(R.drawable.grey_s);
             } else if (train.equals("SI")){
-                b.setText("SIR");
-            } else {
-                b.setText(train);
+                b.setBackgroundResource(R.drawable.blue_sir);
+            } else if (train.equals("1")){
+                b.setBackgroundResource(R.drawable.red_1);
+            }else if (train.equals("2")){
+                b.setBackgroundResource(R.drawable.red_2);
+            }else if (train.equals("3")){
+                b.setBackgroundResource(R.drawable.red_3);
+            }else if (train.equals("4")){
+                b.setBackgroundResource(R.drawable.green_4);
+            }else if (train.equals("5")){
+                b.setBackgroundResource(R.drawable.green_5);
+            }else if (train.equals("6")){
+                b.setBackgroundResource(R.drawable.green_6);
+            }else {
+                b.setBackgroundResource(R.drawable.grey_l);
             }
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,21 +91,19 @@ public class StationInfo extends Fragment{
                     startActivity(i);
                 }
             });
-            b.setBackgroundColor(Color.WHITE);
             b.setId(id);
             if (iter==1) {
                 params.addRule(RelativeLayout.BELOW, txtId);
-                params.setMargins(10, 5, 5, 10);
+                params.setMargins(20, 20, 5, 10);
                 params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
                 params.addRule(RelativeLayout.ALIGN_PARENT_START);
             } else {
                 params.addRule(RelativeLayout.ALIGN_TOP,id-1);
                 params.addRule(RelativeLayout.RIGHT_OF,id-1);
                 params.addRule(RelativeLayout.END_OF,id-1);
-                params.setMargins(10,0,5,0);
+                params.setMargins(20,0,5,0);
             }
             b.setLayoutParams(params);
-            b.setTextColor(Color.BLACK);
             layout.addView(b);
             iter++;
             id++;
@@ -103,7 +111,7 @@ public class StationInfo extends Fragment{
         int bHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
         int bWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
         RelativeLayout.LayoutParams closeParams = new RelativeLayout.LayoutParams(new ActionBar.LayoutParams(bWidth, bHeight));
-        closeParams.setMargins(0, 20, 25, 0);
+        closeParams.setMargins(0, 35, 15, 0);
         closeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         closeParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         Button close = new Button(getActivity());

@@ -15,6 +15,31 @@
 
     <fragment
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:name="com.csg.mta.SearchStations"
+        android:id="@+id/searchFragment"
+        tools:layout="@layout/search_stations"
+        android:layout_alignTop="@+id/map"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"/>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.csg.mta.StationList"
+        android:id="@+id/listFragment"
+        tools:layout="@layout/station_list"
+        android:layout_below="@+id/searchFragment"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"/>
+
+    <fragment
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.csg.mta.StationInfo"
         android:id="@+id/infoFragment"
@@ -26,6 +51,17 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/searchFragment"
+        android:layout_alignEnd="@+id/map"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/mylocation"
+        android:onClick="relocate" />
 
 
 </RelativeLayout>

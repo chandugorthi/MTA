@@ -1,8 +1,11 @@
 package com.csg.mta;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -11,11 +14,15 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -32,6 +39,63 @@ public class WelcomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_screen);
 
         btnAnim = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
+
+        final View view = findViewById(R.id.mainScreen);
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    addButtons(view.getWidth(),view.getHeight());
+                }
+            });
+        }
+
+    }
+
+    private void addButtons(int width, int height){
+        RelativeLayout screen = (RelativeLayout) findViewById(R.id.mainScreen);
+
+        Button mapButton = new Button(this);
+        Button lineButton = new Button(this);
+
+        int buttonHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 54*height/649, getResources().getDisplayMetrics());
+        int buttonWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 212*width/365, getResources().getDisplayMetrics());
+        RelativeLayout.LayoutParams mparams = new RelativeLayout.LayoutParams(new ActionBar.LayoutParams(212*width/365,54*height/649));
+        RelativeLayout.LayoutParams lparams = new RelativeLayout.LayoutParams(new ActionBar.LayoutParams(212*width/365,54*height/649));
+
+        mparams.setMargins(72*width/365, 220*height/649,0,0);
+        mapButton.setLayoutParams(mparams);
+        mapButton.setText("Find closest station");
+        mapButton.setTextColor(Color.parseColor("#E8E8E8"));
+        mapButton.setTypeface(null,Typeface.BOLD);
+        mapButton.setTextSize(17);
+        mapButton.setPadding(34*width/365,0,0,0);
+        mapButton.setBackgroundResource(R.drawable.map_bg);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMap(v);
+            }
+        });
+        screen.addView(mapButton);
+
+        lparams.setMargins(72*width/365, 280*height/649,0,0);
+        lineButton.setLayoutParams(lparams);
+        lineButton.setText("Select train");
+        lineButton.setTypeface(null,Typeface.BOLD);
+        lineButton.setTextColor(Color.parseColor("#E8E8E8"));
+        lineButton.setTextSize(18);
+        lineButton.setBackgroundResource(R.drawable.line_bg);
+        lineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectLine(v);
+            }
+        });
+
+        screen.addView(lineButton);
     }
 
     @Override

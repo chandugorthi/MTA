@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="40dp"
     android:id="@+id/infoLayout"
-    android:background="@drawable/bg"
+    android:background="@drawable/new_3d_bg"
     android:visibility="gone">
 
 
